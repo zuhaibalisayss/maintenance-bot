@@ -1,0 +1,11 @@
+{
+  "title": "Synthetic Student Performance Dataset",
+  "id": "zuhaibalisays/synthetic-student-performance",
+  "subtitle": "Synthetic data for student performance analysis",
+  "description": "A clearly labeled synthetic dataset for demonstrating exploratory data analysis and educational data-science workflows. The records are generated examples and do not represent real students or real-world measurements.",
+  "licenses": [
+    {
+      "name": "CC0-1.0"
+    }
+  ]
+}
