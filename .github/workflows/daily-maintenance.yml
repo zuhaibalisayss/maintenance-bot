@@ -1,0 +1,43 @@
+name: Daily Repository Maintenance
+
+on:
+  schedule:
+    - cron: "0 8 * * *"
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  maintenance:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout maintenance-bot
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run daily maintenance
+        run: python .github/scripts/daily_changes.py
+
+      - name: Configure Git identity
+        run: |
+          git config user.name "zuhaibalisayss"
+          git config user.email "163395035+zuhaibalisayss@users.noreply.github.com."
+
+      - name: Commit maintenance changes
+        run: |
+          git add daily-maintenance.md
+
+          if git diff --cached --quiet; then
+            echo "No changes were created."
+            exit 0
+          fi
+
+          git commit -m "chore: daily repository maintenance"
+          git push
